@@ -1,5 +1,7 @@
 export function FolderContent({data}){
-    const noFilesFound = "There is no files in the current directory"
+    const noFilesFound = "There are no files in the current directory"
+
+    let filtredData = data.filter(derictory => derictory.type === "file")
     
     return <table className="fileInfoTable">
             <thead className="fileInfoHeader">
@@ -10,9 +12,9 @@ export function FolderContent({data}){
               </tr>
             </thead>
             <tbody>
-              {data.filter(derictory => derictory.type === "file").length === 0 &&  
+              {filtredData.length === 0 &&  
                 <h3 className="centeredLocated">{noFilesFound}</h3>}
-              {data.filter(derictory => derictory.type === "file").map(file => (
+              {filtredData.map(file => (
                   <tr className="fileInfo fileRowColor" key = {crypto.randomUUID()}>
                     <td className="fileName">{file.name}</td>
                     <td className="fileSize">{file.size}</td>
